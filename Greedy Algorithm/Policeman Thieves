@@ -78,3 +78,45 @@ public class Solution {
         
     }
 }
+
+
+
+Another method without using extra array
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        char arr[]=new char[N];
+        for(int i=0;i<N;i++){
+            arr[i]=sc.next().charAt(0);
+        }
+        int k=sc.nextInt();
+        int count=0;
+        for(int i=0;i<N;i++){
+            if(arr[i]=='P'){
+                boolean f=false;
+                for(int j=i-k;j<=i &&j>=0;j++){
+                    if(arr[j]=='T'){
+                        count++;
+                        arr[j]='-';
+                        f=true;
+                        break;
+                    }
+                }
+                for(int j=i;j<=i+k && !f && j<N;j++){
+                    if(arr[j]=='T'){
+                        count++;
+                        arr[j]='-';
+                        break;
+                    }
+                }
+            }
+        }
+        System.out.println("Maximum thieves caught:"+" "+count);
+    }
+}

@@ -1,0 +1,50 @@
+Problem Statement:
+You are given a string that encodes words followed by an integer.
+Each integer indicates how many times the preceding word should be repeated.
+Your task is to decode the string and print the words repeated the specified number of times.
+
+Input
+A single string S consisting of:
+One or more substrings of letters (a-z, A-Z), followed immediately by
+An integer (one or more digits).
+
+Constraints:
+1 ≤ |S| ≤ 10^5
+Integers in the string are positive and can be more than one digit.
+The input string is guaranteed to follow the pattern (word)(number)(word)(number)....
+
+Output
+Print each word on a new line, repeated as many times as the number following it.
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        StringBuilder word=new StringBuilder();
+        StringBuilder num=new StringBuilder();
+        for(int i=0;i<str.length();i++){
+            char ch=str.charAt(i);
+            if(Character.isLetter(ch)){
+                if(num.length()>0){
+                    int count=Integer.parseInt(num.toString());
+                    for(int j=0;j<count;j++){
+                        System.out.println(word);
+                    }
+                    word.setLength(0);
+                    num.setLength(0);
+                }
+                word.append(ch);
+            }
+            else if(Character.isDigit(ch)){
+                num.append(ch);
+            }
+        }
+        if(word.length()>0 && num.length()>0){
+            int count=Integer.parseInt(num.toString());
+            for(int j=0;j<count;j++){
+                System.out.println(word);
+            }
+        }
+    }
+}

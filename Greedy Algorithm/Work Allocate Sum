@@ -54,3 +54,53 @@ public class Solution {
         System.out.println(profit);
     }
 }
+
+
+Another method
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        int dl[]=new int[N];
+        int profit[]=new int[N];
+        int max=Integer.MIN_VALUE;
+        for(int i=0;i<N;i++){
+            dl[i]=sc.nextInt();
+            profit[i]=sc.nextInt();
+            max=Math.max(max,dl[i]);
+        }
+        for(int i=0;i<N;i++){
+            for(int j=i+1;j<N;j++){
+                if(profit[i]<profit[j]){
+                    int temp=profit[i];
+                    profit[i]=profit[j];
+                    profit[j]=temp;
+                    
+                    temp=dl[i];
+                    dl[i]=dl[j];
+                    dl[j]=temp;
+                }
+            }
+        }
+        int ans[]=new int[max+1];
+        for(int i=0;i<N;i++){
+            for(int j=dl[i];j>=1;j--){
+                if(ans[j]==0){
+                    ans[j]=profit[i];
+                    break;
+                }
+            }
+        }
+        int sum=0;
+        for(int i=0;i<max+1;i++){
+            sum+=ans[i];
+        }
+        System.out.println(sum);
+    
+    }
+}

@@ -1,0 +1,56 @@
+Given an array of jobs where every job has a deadline and associated profit if the job is finished before the deadline.
+It is also given that every job takes a single unit of time, so the minimum possible deadline for any job is 1. 
+Maximize the total profit if only one job can be scheduled at a time.
+
+Input Format
+
+4
+4 20
+1 10
+1 40
+1 30
+
+Output Format
+
+60
+
+Sample Input 0
+
+4
+4 20   
+1 10
+1 40  
+1 30
+
+Sample Output 0
+
+60
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        int jobs[][]=new int[N][2];
+        for(int i=0;i<N;i++){
+            jobs[i][0]=sc.nextInt();
+            jobs[i][1]=sc.nextInt();
+        }
+        Arrays.sort(jobs,(a,b)->b[1]-a[1]);
+        HashMap<Integer,Integer>slot=new HashMap<>();
+        int profit=0;
+        for(int job[]:jobs){
+            for(int i=job[0];i>=1;i--){
+                if(!slot.containsKey(i)){
+                    slot.put(i,job[1]);
+                    profit=profit+job[1];
+                    break;
+                }
+            }
+        }
+        System.out.println(profit);
+    }
+}

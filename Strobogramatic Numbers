@@ -1,0 +1,54 @@
+write a program to print the all n digit number which is same after rotate 180 degree .
+For Example: If N = 2, all the strobogrammatic numbers of length = 2 are “11”, “88”, “69”, “96”.
+
+Input Format
+input consist of a single integer 2
+
+Output Format
+11 69 88 96
+
+Sample Input 0
+2
+
+Sample Output 0
+11 69 88 96
+
+
+import java.io.*;
+import java.util.*;
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        ArrayList<String> finalans=Strobogramaticnumbers(n,n);
+        Collections.sort(finalans);
+        for(String i:finalans){
+            System.out.print(i+" ");
+        }
+    }
+    public static ArrayList<String> Strobogramaticnumbers(int n,int len){
+        ArrayList<String> result=new ArrayList<>();
+        if(n==0){
+            result.add("");
+            return result;
+        }
+        if(n==1){
+            result.add("1");
+            result.add("0");
+            result.add("8");
+            return result;
+        }
+        ArrayList<String> mid=Strobogramaticnumbers(n-2,len);
+        for(String m:mid){
+            if(n!=len){
+                result.add("0"+m+"0");
+            }
+            result.add("1"+m+"1");
+            result.add("6"+m+"9");
+            result.add("8"+m+"8");
+            result.add("9"+m+"6");
+        }
+        return result;
+    }
+}

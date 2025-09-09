@@ -1,0 +1,51 @@
+Doubly linked list program
+
+
+class node{
+    int data;
+    node right;
+    node left;
+    node(int d){
+        data=d;
+        right=null;
+        left=null;
+    }
+}
+class ll{
+    node head=null;
+    node old=null;
+    void ins(int val){
+        node nn=new node(val);
+        if(head==null){
+            head=nn;
+            old=nn;
+        }
+        else{
+            old.right=nn;
+            nn.left=old;
+            old=nn;
+        }
+    }
+    void dis(){
+        node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.right;
+        }
+        
+    }
+}
+public class Main{
+    public static void main(String[] args){
+        Scanner z=new Scanner(System.in);
+        ll l=new ll();
+        while(z.hasNext()){
+            int d=z.nextInt();
+            l.ins(d);
+        }
+        l.dis();
+    }
+}
+
+
+If you need to reverse the linked list then assign the 29th line void display functions temp=old   and 33 line  temp=temp.left

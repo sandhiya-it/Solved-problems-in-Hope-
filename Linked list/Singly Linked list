@@ -1,0 +1,44 @@
+problem:
+    take the input and print it singly linked list
+
+class node{
+    int data;
+    node next;
+    node(int d){
+        data=d;
+        next=null;
+    }
+}
+class ll{
+    node head=null;
+    node prev=null;
+    void ins(int val){
+        node nn=new node(val);
+        if(head==null){
+            head=nn;
+            prev=nn;
+        }
+        else{
+            prev.next=nn;
+            prev=nn;
+        }
+    }
+    void dis(){
+        node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner z=new Scanner(System.in);
+        ll l=new ll();
+        while(z.hasNext()){
+            int d=z.nextInt();
+            l.ins(d);
+        }
+        l.dis();
+    }
+}

@@ -1,0 +1,53 @@
+class node{
+    int data;
+    node right;
+    node left;
+    node(int d){
+        data=d;
+        right=null;
+        left=null;
+    }
+}
+
+class ll{
+    node head=null;
+    node old=null;
+    void ins(int val){
+        node nn=new node(val);
+        if(head==null){
+            head=nn;
+            nn.right=head;
+            old=nn;
+            head.left=nn;
+        }
+        else{
+            old.right=nn;
+            nn.left=old;
+            old=nn;
+            nn.right=head;
+            head.left=nn;
+        }
+    }
+    void display(){
+        if(head==null){
+            return;
+        }
+        System.out.print(head.data+" ");
+        node temp=head.right;
+        while(temp!=head){
+            System.out.print(temp.data+" ");
+            temp=temp.right;
+        }
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner z=new Scanner(System.in);
+        ll l=new ll();
+        while(z.hasNext()){
+            int d=z.nextInt();
+            l.ins(d);
+        }
+        l.display();
+    }
+}

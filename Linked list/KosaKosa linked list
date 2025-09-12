@@ -1,0 +1,82 @@
+Write a program to create linked list by appending the elements without its duplicate and print the resultant linked list and also the mid element of the linked list.
+
+Input Format:  Input consists of a single line of elements that belongs to the linked list.
+
+Output Format:  Output should be formatted in 2 lines : First line should be the linked list Second line should be the mid element of the linked list.
+
+Sample Input 0
+1 2 3 4
+
+Sample Output 0
+1 2 3 4
+3
+
+Sample Input 1
+1 2 3 4 5
+
+Sample Output 1
+1 2 3 4 5
+3
+
+import java.io.*;
+import java.util.*;
+class node{
+    int data;
+    node next;
+    node(int d){
+        data=d;
+        next=null;
+    }
+}
+class ll{
+    node head=null;
+    node prev=null;
+    void ins(int val){
+        
+        node nn=new node(val);
+        if(head==null){
+            head=nn;
+            prev=nn;
+        }
+        else{
+            node temp=head;
+            while(temp!=null){
+                if(temp.data==val){
+                    return;
+                }
+                temp=temp.next;
+            }
+            prev.next=nn;
+            prev=nn;
+        }
+    }
+    void display(){
+        node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+        System.out.println();
+    }
+    void midnode(){
+        node slow=head;
+        node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        System.out.println(slow.data+" ");
+    }
+}
+public class Solution {
+    public static void main(String[] args) {
+        Scanner z=new Scanner(System.in);
+        ll l=new ll();
+        while(z.hasNext()){
+            int d=z.nextInt();
+            l.ins(d);
+        }
+        l.display();
+        l.midnode();
+    }
+}

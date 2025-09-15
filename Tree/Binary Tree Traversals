@@ -1,0 +1,97 @@
+Take Input Level Wise of Binary Tree and then print in the inorder preorder post order and level order format
+
+Sample Input 0
+
+1 2 3 4 5 6 7 -1 -1 -1 -1 -1 -1 -1 -1
+
+Sample Output 0
+
+4 2 5 1 6 3 7 
+1 2 4 5 3 6 7 
+4 5 2 6 7 3 1 
+1 2 3 4 5 6 7 
+
+import java.io.*;
+import java.util.*;
+class node{
+    int data;
+    node left;
+    node right;
+    node(int d){
+        data=d;
+    }
+}
+public class Solution {
+    public static void displayinorder(node root){
+        if(root==null){
+            return;
+        }
+        displayinorder(root.left);
+        System.out.print(root.data+" ");
+        displayinorder(root.right);
+    }
+    public static void displaypreorder(node root){
+        if(root==null){
+            return;
+        }
+        System.out.print(root.data+" ");
+        displaypreorder(root.left);
+        displaypreorder(root.right);
+    }
+    public static void displaypostorder(node root){
+        if(root==null){
+            return;
+        }
+        displaypostorder(root.left);
+        displaypostorder(root.right);
+        System.out.print(root.data+" ");
+    }
+    public static void levelorder(node root){
+        if(root==null){
+            return;
+        }
+        Queue<node> result=new LinkedList<>();
+        result.add(root);
+        while(!result.isEmpty()){
+            node popelement=result.poll();
+            System.out.print(popelement.data+" ");
+            if(popelement.left!=null){
+                result.add(popelement.left);
+            }
+            if(popelement.right!=null){
+                result.add(popelement.right);
+            }
+            
+        }
+    }
+    public static void main(String[] args) {
+        Scanner z=new Scanner(System.in);
+        Queue<node> q=new LinkedList<>();
+        int val=z.nextInt();
+        node nn=new node(val);
+        node root=nn;
+        q.add(nn);
+        while(!q.isEmpty()){
+            node qpelement=q.poll();
+            val=z.nextInt();
+            if(val!=-1){
+                nn=new node(val);
+                qpelement.left=nn;
+                q.add(nn);
+            }
+            val=z.nextInt();
+            if(val!=-1){
+                nn=new node(val);
+                qpelement.right=nn;
+                q.add(nn);
+            }
+        }
+        displayinorder(root);
+        System.out.println();
+        displaypreorder(root);
+        System.out.println();
+        displaypostorder(root);
+        System.out.println();
+        levelorder(root);
+    }
+}

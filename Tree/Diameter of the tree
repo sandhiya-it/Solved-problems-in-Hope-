@@ -1,0 +1,22 @@
+Diameter of the Binary tree leetcode problem:543
+
+class Solution {
+    public int heightOfSubTree(TreeNode root){
+        if(root==null){
+            return 0;
+        }
+        int left=heightOfSubTree(root.left);
+        int right=heightOfSubTree(root.right);
+        return 1+Math.max(left,right);
+    }
+    public int diameterOfBinaryTree(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int left=heightOfSubTree(root.left);
+        int right=heightOfSubTree(root.right);
+        int dialeft=diameterOfBinaryTree(root.left);
+        int diaright=diameterOfBinaryTree(root.right);
+        return Math.max(Math.max(dialeft,diaright),left+right);
+    }
+}

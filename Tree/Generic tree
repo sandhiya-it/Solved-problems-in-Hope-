@@ -1,0 +1,76 @@
+Given a generic tree, find and return the sum of all nodes present in the given tree and print as Level Order.
+
+Input Format
+
+The first line of input contains data of the nodes of the tree in level order form. The order is: data for root node, number of children to root node, data of each of child nodes and so on and so forth for each node. The data of the nodes of the tree is separated by space.
+
+Output Format
+
+The first and only line of output prints the sum of all nodes of the given generic tree and print as Level Order..
+
+Sample Input
+
+10 3 20 30 40 2 40 50 0 0 0 0
+
+Sample Output 
+
+190
+10 20 30 40 40 50
+
+import java.io.*;
+import java.util.*;
+class node{
+    int data;
+    ArrayList<node> next;
+    node(int d){
+        data=d;
+        next=new ArrayList<>();
+    }
+}
+public class Solution {
+    public static int sum(node root){
+        if(root==null){
+            return 0;
+        }
+        int total=root.data;
+        for(node child:root.next){
+            total+=sum(child);
+        }
+        return total;
+    }
+    public static void levelorder(node root){
+        if(root==null){
+            return;
+        }
+        Queue<node> result=new LinkedList<>();
+        result.add(root);
+        while(!result.isEmpty()){
+            node popelement=result.poll();
+            System.out.print(popelement.data+" ");
+            for(node child:popelement.next){
+                result.add(child);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner z=new Scanner(System.in);
+        Queue<node> q=new LinkedList<>();
+        int val=z.nextInt();
+        node nn=new node(val);
+        node root=nn;
+        q.add(nn);
+        while(!q.isEmpty()){
+            node qpe=q.poll();
+            int count=z.nextInt();
+            for(int i=0;i<count;i++){
+                val=z.nextInt();
+                nn=new node(val);
+                qpe.next.add(nn);
+                q.add(nn);
+            }
+        }
+        System.out.println(sum(root));
+        levelorder(root);
+        
+    }
+}

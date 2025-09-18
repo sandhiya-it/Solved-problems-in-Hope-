@@ -1,0 +1,48 @@
+without using normal division
+
+Input: 20 5
+Output: 4
+
+Input: 20 -5
+Output: -4
+
+Input: -20 5
+Output: -4
+
+Input: -20 -5
+Output: 4
+
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n1=sc.nextInt();
+        int n2=sc.nextInt();
+        int count=0;
+        if(n1<0 && n2<0){
+            n1=Math.abs(n1);
+            n2=Math.abs(n2);
+            while(n1>0){
+                n1=n1-n2;
+                count+=1;
+            }
+            System.out.println(count);
+        }
+        else if(n1>0 && n2>0){
+            while(n1>0){
+                n1=n1-n2;
+                count+=1;
+            }
+            System.out.println(count);
+        }
+        else{
+            n1=Math.abs(n1);
+            n2=Math.abs(n2);
+            while(n1>0){
+                n1=n1-n2;
+                count+=-1;
+            }
+            System.out.println("-"+count);
+        }
+    }
+}

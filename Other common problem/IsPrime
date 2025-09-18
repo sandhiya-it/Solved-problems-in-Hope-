@@ -1,0 +1,36 @@
+input n1=5 n2=3
+output=3
+we need to add both n1 and n2 if the sum is prime number print 0 else print the number to add with sum so that it became prime number
+5+3=8  need to add 3 ---> 8+3=11 so that it is prime
+public class Main {
+    public static boolean isPrime(int sum){
+        if(sum<=1){
+            return false;
+        }
+        for(int i=2;i<sum;i++){
+            if(sum%i==0){
+                return false;
+            }
+        }
+        return true;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n1=sc.nextInt();
+        int n2=sc.nextInt();
+        int sum=n1+n2;
+        int count=0;
+        boolean prime=false;
+        prime=isPrime(sum);
+        if(prime){
+            System.out.println(count);
+        }
+        else{
+            while(!isPrime(sum)){
+                sum=sum+count;
+                count++;
+            }
+            System.out.println(count);
+        }
+    }
+}

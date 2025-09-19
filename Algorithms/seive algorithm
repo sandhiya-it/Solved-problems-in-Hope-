@@ -1,7 +1,7 @@
 Find the prime numbers between the given range
 input:25
 output:2 3 5 7 11 13 17 19 23 
-
+time complexity: O(nlog(log n))
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
